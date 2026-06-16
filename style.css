@@ -189,7 +189,30 @@ footer {
   100% { transform: translate(0); }
 }
 
+/* === FIX #1: Mobile — slower glitch for small screens === */
 @media (max-width: 600px) {
   .body { padding: 16px; }
   .tag { font-size: 11px; }
+
+  .glitch::before,
+  .glitch::after {
+    animation-duration: 0.8s;
+  }
+}
+
+/* === FIX #2: Accessibility — disable glitch for reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  .glitch::before,
+  .glitch::after {
+    animation: none;
+  }
+
+  .blink {
+    animation: none;
+  }
+
+  .cursor .prompt::after {
+    animation: none;
+    opacity: 1;
+  }
 }
